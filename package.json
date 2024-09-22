@@ -9,7 +9,7 @@
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "remix-serve ./build/index.js",
     "typecheck": "tsc",
-    "vercel-build": "prisma generate && prisma migrate deploy && next build",
+    "vercel-build": "prisma generate && prisma migrate deploy && remix build",
     "prisma:generate": "prisma generate"
   },
   "dependencies": {
