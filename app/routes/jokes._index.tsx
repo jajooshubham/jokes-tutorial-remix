@@ -34,6 +34,7 @@ export default function JokesIndexRoute() {
 
 export function ErrorBoundary() {
     const error = useRouteError();
+    console.log(error);
   
     if (isRouteErrorResponse(error) && error.status === 404) {
       return (

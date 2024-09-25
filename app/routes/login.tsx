@@ -1,6 +1,7 @@
 import type {
     ActionFunctionArgs,
     LinksFunction,
+    MetaFunction,
   } from "@remix-run/node";
   import {
     Link,
@@ -21,6 +22,17 @@ import type {
     { rel: "stylesheet", href: stylesUrl },
   ];
   
+  export const meta: MetaFunction = () => {
+    const description =
+      "Login to submit your own jokes to Remix Jokes!";
+  
+    return [
+      { name: "description", content: description },
+      { name: "twitter:description", content: description },
+      { title: "Remix Jokes | Login" },
+    ];
+  };
+
   function validateUsername(username: string) {
     if (username.length < 3) {
       return "Usernames must be at least 3 characters long";

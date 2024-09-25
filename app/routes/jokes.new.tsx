@@ -156,6 +156,7 @@ import type {
   
   export function ErrorBoundary() {
     const error = useRouteError();
+    console.log(error);
   
     if (isRouteErrorResponse(error) && error.status === 401) {
       return (

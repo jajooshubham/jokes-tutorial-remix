@@ -1,6 +1,7 @@
 import type {
     ActionFunctionArgs,
     LoaderFunctionArgs,
+    MetaFunction,
   } from "@remix-run/node";
   import { json, redirect } from "@remix-run/node";
   import {
@@ -17,6 +18,23 @@ import type {
     requireUserId,
   } from "~/utils/session.server";
   
+  export const meta: MetaFunction<typeof loader> = ({
+    data,
+  }) => {
+    const { description, title } = data
+      ? {
+          description: `Enjoy the "${data.joke.name}" joke and much more`,
+          title: `"${data.joke.name}" joke`,
+        }
+      : { description: "No joke found", title: "No joke" };
+  
+    return [
+      { name: "description", content: description },
+      { name: "twitter:description", content: description },
+      { title },
+    ];
+  };
+
   export const loader = async ({
     params,
     request,
@@ -93,6 +111,7 @@ import type {
   export function ErrorBoundary() {
     const { jokeId } = useParams();
     const error = useRouteError();
+    console.log(error);
   
     if (isRouteErrorResponse(error)) {
       if (error.status === 400) {
